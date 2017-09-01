@@ -7,7 +7,8 @@ var incorrectCount = 0;
 var unanswered = 0;
 $('#questionContainer').hide();
 $('#submit').hide();
-var myForm = $('#questionForm');
+$('#restartBtn').hide();
+var form = $('#questionForm');
 var counter;
 var questions = [{
     question: "Who is the oldest team in the NFL?",
@@ -36,6 +37,7 @@ var questions = [{
 
 		$('#startBtn').on('click', function(){
 			$('#startBtn').hide();
+			$('#restartBtn').hide();
 			$('#timer').show();
 			$('#questionContainer').show();
 			$('#submit').show();
@@ -43,12 +45,13 @@ var questions = [{
 			timer();
 		});
 
-		myForm.on("submit", onSubmit);
+		form.on("submit", onSubmit);
 
 		$('#scores').hide();
 	}
 
 	function timer(){
+
 		$('#timer').html("Play Clock: " + count + " seconds");
 
 		if (count <= 0) {
@@ -84,18 +87,19 @@ var questions = [{
 	}
 
 	function onSubmit(){
+
 		clearTimeout(counter);
 
 		for (var i = 0; i < questions.length; i ++) {
 
-		 	console.log("questions", questions[i].correctAnswer);
-		 	console.log("value", myForm[0]['ques' + i].value);
+		 	// console.log("questions", questions[i].correctAnswer);
+		 	// console.log("value", form[0]['ques' + i].value);
 
-		 	if (myForm[0]['ques' + i].value === ""){
+		 	if (form[0]['ques' + i].value === ""){
 		 		unanswered++;
 		 		$('#incomplete').html(unanswered);
 		 	}
-			else if (questions[i].correctAnswer == myForm[0]['ques' + i].value) {
+			else if (questions[i].correctAnswer == form[0]['ques' + i].value) {
 				correctCount++;
 				$('#touchdowns').html(correctCount);
 			}
@@ -109,11 +113,22 @@ var questions = [{
 		$('#submit').hide();
 		$('#questionContainer').hide();
 		$('#scores').show();
+		$('#restartBtn').show();
 		return false;
+
+	}
+
+	function restartGame(){
+
+		$('#restartBtn').on('click', function(){
+			console.log('I\'M HERE');
+			location.reload(true);
+		});
 
 	}
 
 displayQuestions();
 startGame();
+restartGame();
 
 });

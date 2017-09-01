@@ -1,7 +1,7 @@
 body {
 	background-image: url('../images/background.jpg');
 	background-size: 100%;
-	background-repeat: no-repeat;
+	/*background-repeat: no-repeat;*/
 }
 
 h1 {
@@ -24,6 +24,18 @@ h2, h3 {
 	padding: 60px 30px;
 	font-family: Arial;
 	width: 50%;
+	font-size: 40px;
+	font-weight: 900;
+	text-shadow: 2px 2px gray;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+#restartBtn {
+	
+	border: 2px solid black;
+	padding: 60px 30px;
+	font-family: Arial;
+	width: 30%;
 	font-size: 40px;
 	font-weight: 900;
 	text-shadow: 2px 2px gray;
